@@ -1,0 +1,72 @@
+/* 响应式设计 */
+@media (max-width: 768px) {
+    header {
+        padding: 10px;
+    }
+
+    section {
+        padding: 10px;
+    }
+
+    .project {
+        padding: 10px;
+    }
+
+    footer {
+        padding: 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 5px;
+    }
+
+    section {
+        padding: 5px;
+    }
+
+    .project {
+        padding: 5px;
+    }
+
+    footer {
+        padding: 3px;
+    }
+}
+/* 响应式设计 */
+@media (max-width: 768px) {
+    header {
+        padding: 10px;
+    }
+
+    section {
+        padding: 10px;
+    }
+
+    .project {
+        padding: 10px;
+    }
+
+    footer {
+        padding: 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 5px;
+    }
+
+    section {
+        padding: 5px;
+    }
+
+    .project {
+        padding: 5px;
+    }
+
+    footer {
+        padding: 3px;
+    }
+}
