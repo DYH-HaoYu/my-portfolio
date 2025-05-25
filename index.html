@@ -4,15 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>个人简历</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <script>
-    function makePhoneCall() {
-        // 拨打电话号码
-        window.location.href = "tel:13213689334";
-    }
-</script>
-
     <style>
         body {
             background: linear-gradient(135deg, #f5f7fa 0%, #b8c6db 100%);
@@ -26,63 +17,65 @@
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-        .about, .skills {
+       header {
+            background-color: #333;
+            color: #fff;
+            text-align: center; /* 标题居中 */
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        nav {
+            padding: 0 20px;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        nav a:hover {
+            color: #ffd700;
+        }
+        .profile {
             background-color: #f9f9f9;
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 40px 0;
+            font-size: 18px;
+        }
+        .profile img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin-right: 30px;
+        }
+        section {
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+            display: none; /* 确保初始状态为隐藏 */
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
         }
-        .project img {
-            width: 100%;
-            max-width: 600px;
-            height: auto;
-            border-radius: 10px;
-            cursor: pointer;
-        }
-        .carousel {
-            position: relative;
-            overflow: hidden;
-            max-width: 600px;
-            margin: auto;
-        }
-        .carousel img {
-            display: none;
-            width: 100%;
-        }
-        .carousel img.active {
+        section.active {
             display: block;
-        }
-        .project-name {
-            position: absolute;
-            bottom: 10px;
-            left: 10px;
-            color: #fff;
-            background-color: rgba(0, 0, 0, 0, 0.5);
-            padding: 5px;
-            border-radius: 5px;
-        }
-        .carousel-indicators {
-            position: relative;
-            bottom: 0px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            justify-content: center;
-            width: 100%;
-            list-style: none;
-            padding: 0;
-			margin-top: 10px;
-        }
-        .carousel-indicators li {
-            margin: 0 5px;
-            padding: 5px;
-            border: 1px solid #fff;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .carousel-indicators .active {
-            background-color: #fff;
-            color: #333;
+            opacity: 1;
         }
         footer {
             background-color: #333;
@@ -92,15 +85,20 @@
             position: relative;
             width: 100%;
         }
+
         /* 响应式设计 */
         @media (max-width: 768px) {
             header {
                 padding: 10px;
             }
-            section {
-                padding: 10px;
+            nav ul {
+                flex-direction: column;
+                align-items: center;
             }
-            .project {
+            nav ul li {
+                margin: 5px 0;
+            }
+            section {
                 padding: 10px;
             }
             footer {
@@ -114,52 +112,112 @@
             section {
                 padding: 5px;
             }
-            .project {
-                padding: 5px;
-            }
             footer {
                 padding: 3px;
             }
         }
+        /* 新增技能模块样式 */
+        .skill-item {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        /* 图片样式 */
+        .project img {
+            width: 150px; /* 修改为150px宽 */
+            height: 150px; /* 修改为150px高 */
+            border-radius: 50%;
+            margin-right: 30px;
+        }
+        /* 新增比赛模块样式 */
+        .award-item {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+        }
+        .award-item img {
+            width: 100px;
+            height: 100px;
+            border-radius: 5px;
+            margin-right: 15px;
+        }
+        .award-info h3 {
+            margin-top: 0;
+        }
     </style>
 </head>
 <body>
-    <header class="animate__animated animate__fadeInDown">
-        <h1>杜亿豪</h1>
-        <p>软件工程师</p>
+    <header>
+        <h1>Welcome to my website</h1>
+        <nav>
+            <ul>
+                <li><a href="#about">关于我</a></li>
+                <li><a href="#skills">技能概述</a></li>
+                <li><a href="#projects">项目经验</a></li>
+                <li><a href="#awards">比赛历程</a></li>
+                <li><a href="#contact">联系方式</a></li>
+            </ul>
+        </nav>
     </header>
-    <section id="about" class="animate__animated animate__fadeIn about">
-        <h2>关于我</h2>
-        <p>您好，我是一名热衷于全栈开发的软件技术专业毕业生，精通Java和Python编程语言，并对前端（HTML/CSS/JavaScript）与后端（Spring Boot, Django）开发拥有深厚的理解和实践经验。我的技术栈还包括数据库设计与管理（MySQL, MongoDB），使我能够独立构建并优化复杂的数据库系统。我对设备检测领域充满热情，渴望将我的编程技能与物联网（IoT）技术相结合，以实现智能设备的高效监测和管理。我具备出色的学习能力和对新技术的快速适应能力，这使我能够不断更新我的技术知识库，以应对快速变化的技术环境。作为一名全栈开发者，我热衷于在项目的每个阶段都发挥作用，从概念设计到产品部署，我都能提供专业的见解和解决方案。我期待加入一个创新的团队，共同推动技术边界，创造真正有价值的软件产品。</p>
+    <section id="about" class="profile active">
+        <div class="profile">
+            <p><strong>您好，我是一名热衷于全栈开发的软件技术专业毕业生，精通Java和Python编程语言，并对前端（HTML/CSS/JavaScript）与后端（Spring Boot, Django）开发拥有深厚的理解和实践经验。我的技术栈还包括数据库设计与管理（MySQL, MongoDB），使我能够独立构建并优化复杂的数据库系统。我对设备检测领域充满热情，渴望将我的编程技能与物联网（IoT）技术相结合，以实现智能设备的高效监测和管理。我具备出色的学习能力和对新技术的快速适应能力，这使我能够不断更新我的技术知识库，以应对快速变化的技术环境。作为一名全栈开发者，我热衷于在项目的每个阶段都发挥作用，从概念设计到产品部署，我都能提供专业的见解和解决方案。我期待加入一个创新的团队，共同推动技术边界，创造真正有价值的软件产品。</strong></p>
+            <img src="images/微信图片_20250525151243.jpg" alt="杜亿豪">
+        </div>
     </section>
-    <section id="skills" class="animate__animated animate__fadeInUp skills">
-        <h2>技能</h2>
-        <ul>
-            <li>Java</li>
-            <li>Python</li>
-            <li>全栈开发：Java, Python, HTML, CSS, JavaScript (Vue.js, React.js)</li>
-            <li>后端架构：Spring Boot, Django REST framework</li>
-            <li>数据库技术：MySQL, MongoDB, 数据库规范化与优化</li>
-        </ul>
+    <section id="skills">
+        <h2>技能概述</h2>
+        <div class="skill-container">
+            <div class="skill-item">
+                <h3>Java</h3>
+                <p>熟练掌握Java编程语言，具备扎实的面向对象编程基础，能够开发高性能的后端应用。</p>
+            </div>
+            <div class="skill-item">
+                <h3>Python</h3>
+                <p>精通Python语言，熟悉常用库和框架，能够进行数据分析、爬虫开发以及后端服务构建。</p>
+            </div>
+            <div class="skill-item">
+                <h3>全栈开发</h3>
+                <p>具备全栈开发能力，熟悉前端（HTML/CSS/JavaScript/Vue.js/React.js）和后端（Spring Boot/Django REST framework）技术栈。</p>
+            </div>
+            <div class="skill-item">
+                <h3>后端架构</h3>
+                <p>熟悉Spring Boot和Django REST framework，能够设计和开发高效的后端架构。</p>
+            </div>
+            <div class="skill-item">
+                <h3>数据库技术</h3>
+                <p>掌握MySQL和MongoDB数据库技术，包括数据库设计、优化和管理。</p>
+            </div>
+        </div>
     </section>
-    <section id="projects" class="animate__animated animate__animated">
+    <section id="projects">
         <h2>项目经验</h2>
         <div class="carousel">
             <div class="project">
-                <img src="图书管理系统.png" alt="图书管理系统" class="active" onclick="enlargeImage(this)">
+                <img src="images/图书管理系统.png" alt="图书管理系统" class="active" onclick="largeImage(this)">
                 <div class="project-name">图书管理系统</div>
+                <p>这是一个基于Java的图书管理系统，实现了图书的增删改查功能。</p>
             </div>
             <div class="project">
-                <img src="图书管理系统数据库.jpg" alt="图书管理系统数据库" onclick="enlargeImage(this)">
+                <img src="images/图书管理系统数据库.jpg" alt="图书管理系统数据库" onclick="largeImage(this)">
                 <div class="project-name">图书管理系统数据库</div>
+                <p>这是图书管理系统的数据库设计，使用MySQL实现了数据的高效存储和查询。</p>
             </div>
             <div class="project">
-                <img src="学生管理系统.jpg" alt="学生管理系统" onclick="enlargeImage(this)">
+                <img src="images/学生管理系统.jpg" alt="学生管理系统" onclick="largeImage(this)">
                 <div class="project-name">学生管理系统</div>
+                <p>这是一个基于eclipse的student management system，实现了学生信息的管理功能。</p>
             </div>
             <div class="project">
-                <img src="学生管理系统数据库2.jpg" alt="学生管理系统数据库" onclick="enlargeImage(this)">
+                <img src="images/学生管理系统数据库2.jpg" alt="学生管理系统数据库" onclick="largeImage(this)">
                 <div class="project-name">学生管理系统数据库</div>
+                <p>这是学生管理系统的数据库设计，使用MongoDB实现了数据的灵活存储和查询。</p>
             </div>
         </div>
         <ul class="carousel-indicators">
@@ -169,15 +227,136 @@
             <li onclick="showImage(3)">4</li>
         </ul>
     </section>
-    <section id="contact" class="animate__animated animate__fadeInUp">
+    <section id="awards">
+        <h2>比赛历程</h2>
+        <div class="award-container">
+            <div class="award-item">
+                <img src="" alt="全国大学生程序设计竞赛">
+                <div class="award-info">
+                    <h3>2024年 全国大学生程序设计竞赛省赛二等奖</h3>
+                    <p>在本次竞赛中，我负责算法设计和代码实现，通过团队协作成功解决了多个复杂问题。</p>
+                </div>
+            </div>
+            <div class="award-item">
+                <img src="" alt="全国大学生电子设计竞赛">
+                <div class="award-info">
+                    <h3>2024年 全国大学生电子设计竞赛省赛优秀奖</h3>
+                    <p>本次比赛我参与了硬件设计和软件开发，完成了智能小车的控制系统的实现。</p>
+                </div>
+            </div>
+            <div class="award-item">
+                <img src="" alt="全国大学生学创杯">
+                <div class="award-info">
+                    <h3>2025年 全国大学生学创杯省赛三等奖</h3>
+                    <p>在这个项目中，我研发出一个智能分析模型，来帮助团队进行各项数据分析。</p>
+                </div>
+            </div>
+            <div class="award-item">
+                <img src="images/微信图片_20250525194337.jpg" alt=""诚信校园"行活动征文大赛">
+                <div class="award-info">
+                    <h3>2024年 诚信校园"行活动征文大赛优秀奖</h3>
+                    <p>本次比赛我通过运用python调试AI来协助进行文章排版以及查重，提高效率。</p>
+                </div>
+            </div>
+            <div class="award-item">
+                <img src="images/屏幕截图 2025-05-25 195247.jpg" alt="全国大学创新创业大赛">
+                <div class="award-info">
+                    <h3>2024年 全国大学创新创业大赛优秀奖</h3>
+                    <p>本次比赛我设计了一个基于AI的智能化项目，AI智能设计(室内设计)以调试AI为主来进行一个自主设计的一个软件。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="contact">
         <h2>联系方式</h2>
         <p>邮箱：2265545151@qq.com</p>
         <p>电话：13213689334</p>
-       <button onclick="makePhoneCall()">联系我</button>
+        <p>微信：dh13213689334</p>
+        <button onclick="makePhoneCall()">联系我</button>
+        <p>如果您对我的项目感兴趣或有任何问题，欢迎通过以上方式联系我。</p>
     </section>
-    <footer class="animate__animated animate__fadeIn">
+    <footer>
         <p>&copy; 2025 杜亿豪. All rights reserved.</p>
     </footer>
-    <script src="scripts.js"></script>
+
+    <script>
+        // 添加滚动加载动画
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            sections.forEach(function(section) {
+                const sectionTop = section.getBoundingClientRect().top;
+                if (sectionTop < window.innerHeight) {
+                    section.style.opacity = '1';
+                }
+            });
+        });
+
+        // 添加按钮点击事件
+        document.addEventListener('DOMContentLoaded', function() {
+            const button = document.querySelector('#contact button');
+            if (button) {
+                button.addEventListener('click', function() {
+                    alert('感谢您的关注！');
+                });
+            }
+        });
+
+        // 添加点击图片放大功能
+        function largeImage(img) {
+            const enlargedImg = document.createElement('img');
+            enlargedImg.src = img.src;
+            enlargedImg.style.position = 'fixed';
+            enlargedImg.style.top = '50%';
+            enlargedImg.style.left = '50%';
+            enlargedImg.style.transform = 'translate(-50%, -50%)';
+            enlargedImg.style.width = '90%';
+            enlargedImg.style.height = '90%';
+            enlargedImg.style.zIndex = '1000';
+            enlargedImg.style.cursor = 'zoom-out';
+            enlargedImg.onclick = function() {
+                document.body.removeChild(enlargedImg);
+            };
+            document.body.appendChild(enlargedImg);
+        }
+
+        window.onload = function() {
+            const skillsSection = document.getElementById('skills');
+            if (skillsSection) {
+                skillsSection.style.display = 'block'; // 显示“技能”部分
+            }
+        };
+
+        // 导航功能
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.querySelector('#' + targetId);
+                if (targetElement) {
+                    document.querySelectorAll('section').forEach(section => {
+                        section.style.display = 'none'; // 隐藏所有 section
+                        section.style.opacity = '0';
+                    });
+                    targetElement.style.display = 'block'; // 显示目标元素
+                    targetElement.style.opacity = '1';
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // 图片轮播功能
+        function showImage(index) {
+            const projects = document.querySelectorAll('.project');
+            const indicators = document.querySelectorAll('.carousel-indicators li');
+            
+            projects.forEach((project, i) => {
+                project.style.display = i === index ? 'block' : 'none';
+            });
+            
+            indicators.forEach((indicator, i) => {
+                indicator.classList.toggle('active', i === index);
+            });
+        }
+    </script>
 </body>
 </html>
