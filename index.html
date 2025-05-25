@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人简历</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script>
+    function makePhoneCall() {
+        // 拨打电话号码
+        window.location.href = "tel:13213689334";
+    }
+</script>
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #b8c6db 100%);
+            animation: gradient 10s ease infinite;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .about, .skills {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .project img {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .carousel {
+            position: relative;
+            overflow: hidden;
+            max-width: 600px;
+            margin: auto;
+        }
+        .carousel img {
+            display: none;
+            width: 100%;
+        }
+        .carousel img.active {
+            display: block;
+        }
+        .project-name {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            color: #fff;
+            background-color: rgba(0, 0, 0, 0, 0.5);
+            padding: 5px;
+            border-radius: 5px;
+        }
+        .carousel-indicators {
+            position: relative;
+            bottom: 0px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            list-style: none;
+            padding: 0;
+			margin-top: 10px;
+        }
+        .carousel-indicators li {
+            margin: 0 5px;
+            padding: 5px;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .carousel-indicators .active {
+            background-color: #fff;
+            color: #333;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: relative;
+            width: 100%;
+        }
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            header {
+                padding: 10px;
+            }
+            section {
+                padding: 10px;
+            }
+            .project {
+                padding: 10px;
+            }
+            footer {
+                padding: 5px;
+            }
+        }
+        @media (max-width: 480px) {
+            header {
+                padding: 5px;
+            }
+            section {
+                padding: 5px;
+            }
+            .project {
+                padding: 5px;
+            }
+            footer {
+                padding: 3px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="animate__animated animate__fadeInDown">
+        <h1>杜亿豪</h1>
+        <p>软件工程师</p>
+    </header>
+    <section id="about" class="animate__animated animate__fadeIn about">
+        <h2>关于我</h2>
+        <p>您好，我是一名热衷于全栈开发的软件技术专业毕业生，精通Java和Python编程语言，并对前端（HTML/CSS/JavaScript）与后端（Spring Boot, Django）开发拥有深厚的理解和实践经验。我的技术栈还包括数据库设计与管理（MySQL, MongoDB），使我能够独立构建并优化复杂的数据库系统。我对设备检测领域充满热情，渴望将我的编程技能与物联网（IoT）技术相结合，以实现智能设备的高效监测和管理。我具备出色的学习能力和对新技术的快速适应能力，这使我能够不断更新我的技术知识库，以应对快速变化的技术环境。作为一名全栈开发者，我热衷于在项目的每个阶段都发挥作用，从概念设计到产品部署，我都能提供专业的见解和解决方案。我期待加入一个创新的团队，共同推动技术边界，创造真正有价值的软件产品。</p>
+    </section>
+    <section id="skills" class="animate__animated animate__fadeInUp skills">
+        <h2>技能</h2>
+        <ul>
+            <li>Java</li>
+            <li>Python</li>
+            <li>全栈开发：Java, Python, HTML, CSS, JavaScript (Vue.js, React.js)</li>
+            <li>后端架构：Spring Boot, Django REST framework</li>
+            <li>数据库技术：MySQL, MongoDB, 数据库规范化与优化</li>
+        </ul>
+    </section>
+    <section id="projects" class="animate__animated animate__animated">
+        <h2>项目经验</h2>
+        <div class="carousel">
+            <div class="project">
+                <img src="图书管理系统.png" alt="图书管理系统" class="active" onclick="enlargeImage(this)">
+                <div class="project-name">图书管理系统</div>
+            </div>
+            <div class="project">
+                <img src="图书管理系统数据库.jpg" alt="图书管理系统数据库" onclick="enlargeImage(this)">
+                <div class="project-name">图书管理系统数据库</div>
+            </div>
+            <div class="project">
+                <img src="学生管理系统.jpg" alt="学生管理系统" onclick="enlargeImage(this)">
+                <div class="project-name">学生管理系统</div>
+            </div>
+            <div class="project">
+                <img src="学生管理系统数据库2.jpg" alt="学生管理系统数据库" onclick="enlargeImage(this)">
+                <div class="project-name">学生管理系统数据库</div>
+            </div>
+        </div>
+        <ul class="carousel-indicators">
+            <li class="active" onclick="showImage(0)">1</li>
+            <li onclick="showImage(1)">2</li>
+            <li onclick="showImage(2)">3</li>
+            <li onclick="showImage(3)">4</li>
+        </ul>
+    </section>
+    <section id="contact" class="animate__animated animate__fadeInUp">
+        <h2>联系方式</h2>
+        <p>邮箱：2265545151@qq.com</p>
+        <p>电话：13213689334</p>
+       <button onclick="makePhoneCall()">联系我</button>
+    </section>
+    <footer class="animate__animated animate__fadeIn">
+        <p>&copy; 2025 杜亿豪. All rights reserved.</p>
+    </footer>
+    <script src="scripts.js"></script>
+</body>
+</html>
