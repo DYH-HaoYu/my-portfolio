@@ -4,23 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>个人简历</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        /* 添加音乐控制按钮的样式 */
+        .music-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        .music-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        .music-btn:hover {
+            background-color: #555;
+        }
+
         body {
             background: linear-gradient(135deg, #f5f7fa 0%, #b8c6db 100%);
             animation: gradient 10s ease infinite;
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
+            overflow-x: hidden;
         }
         @keyframes gradient {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-       header {
+        header {
             background-color: #333;
             color: #fff;
-            text-align: center; /* 标题居中 */
+            text-align: center;
             padding: 10px 0;
             position: sticky;
             top: 0;
@@ -47,29 +74,12 @@
         nav a:hover {
             color: #ffd700;
         }
-        .profile {
-            background-color: #f9f9f9;
-            padding: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin: 40px 0;
-            font-size: 18px;
-        }
-        .profile img {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            margin-right: 30px;
-        }
         section {
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             margin: 20px 0;
-            display: none; /* 确保初始状态为隐藏 */
+            display: none;
             opacity: 0;
             transition: opacity 0.5s ease-in-out;
         }
@@ -91,57 +101,97 @@
             header {
                 padding: 10px;
             }
-            .profile {
-                flex-direction: column;
-                text-align: center;
+            .profile-container {
+                padding: 20px;
             }
-            .profile img {
-                margin-right: 0;
-                margin-bottom: 20px;
-            }
-            .profile p {
-                padding: 0 10px;
-            }
-            nav ul {
+            .profile-modules {
                 flex-direction: column;
                 align-items: center;
             }
-            nav ul li {
-                margin: 5px 0;
-            }
-            section {
-                padding: 10px;
-            }
-            footer {
-                padding: 5px;
-            }
-            .project img, .award-item img {
+            .profile-module {
                 width: 100%;
-                height: auto;
-                border-radius: 5px;
-                margin-right: 0;
-                margin-bottom: 10px;
+                max-width: 100%;
             }
-            .skill-item {
-                padding: 10px;
-                margin-bottom: 10px;
-            }
-            p {
-                padding: 0;
+            .next-btn {
+                width: 100%;
+                margin-top: 20px;
             }
         }
-        @media (max-width: 480px) {
-            header {
-                padding: 5px;
-            }
-            section {
-                padding: 5px;
-            }
-            footer {
-                padding: 3px;
+        @media (min-width: 769px) {
+            .next-btn {
+                display: none;
             }
         }
-        /* 新增技能模块样式 */
+
+        /* 新增科技感元素 */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* 关于我页面样式 */
+        .profile-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px 0;
+        }
+        .profile-modules {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            max-width: 1200px;
+            padding: 0 20px;
+        }
+        .profile-module {
+            flex: 1 1 300px;
+            max-width: 500px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+        .profile-module h3 {
+            margin-top: 0;
+            color: #333;
+            font-size: 1.3em;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        .profile-module p {
+            line-height: 1.6;
+            color: #444;
+        }
+        .profile-container img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 20px 0;
+        }
+        .next-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
+        }
+        .next-btn:hover {
+            background-color: #45a049;
+        }
+
+        /* 技能进度条样式 */
         .skill-item {
             background-color: #f9f9f9;
             padding: 15px;
@@ -149,35 +199,51 @@
             margin-bottom: 15px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        /* 图片样式 */
+        .skill-level {
+            float: right;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+        .progress-bar {
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+        .progress {
+            height: 100%;
+            background-color: #4CAF50;
+            border-radius: 5px;
+            width: 0%;
+            transition: width 1s ease-in-out;
+        }
+
+        /* 项目经验图片样式 */
         .project img {
-            width: 150px; /* 修改为150px宽 */
-            height: 150px; /* 修改为150px高 */
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
             margin-right: 30px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
         }
-        /* 新增比赛模块样式 */
-        .award-item {
-            background-color: #f9f9f9;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            display: flex;
-            align-items: center;
+        .project img:hover {
+            transform: scale(1.05);
         }
+
+        /* 比赛历程图片样式 */
         .award-item img {
             width: 100px;
             height: 100px;
             border-radius: 5px;
             margin-right: 15px;
-        }
-        .award-info h3 {
-            margin-top: 0;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
+    <div id="particles-js"></div>
     <header>
         <h1>Welcome to my website</h1>
         <nav>
@@ -191,41 +257,81 @@
         </nav>
     </header>
     <section id="about" class="profile active">
-        <div class="profile">
-            <p><strong>您好，我是一名热衷于全栈开发的软件技术专业毕业生，精通Java和Python编程语言，并对前端（HTML/CSS/JavaScript）与后端（Spring Boot, Django）开发拥有深厚的理解和实践经验。我的技术栈还包括数据库设计与管理（MySQL, MongoDB），使我能够独立构建并优化复杂的数据库系统。我对设备检测领域充满热情，渴望将我的编程技能与物联网（IoT）技术相结合，以实现智能设备的高效监测和管理。我具备出色的学习能力和对新技术的快速适应能力，这使我能够不断更新我的技术知识库，以应对快速变化的技术环境。作为一名全栈开发者，我热衷于在项目的每个阶段都发挥作用，从概念设计到产品部署，我都能提供专业的见解和解决方案。我期待加入一个创新的团队，共同推动技术边界，创造真正有价值的软件产品。</strong></p>
-            <img src="images/微信图片_20250525151243.jpg" alt="杜亿豪">
+        <div class="profile-container">
+            <div style="text-align: center; margin-bottom: 20px;">
+                <h1 style="margin: 10px 0; font-size: 2.5em; color: #333; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);">杜亿豪</h1>
+                <p style="margin: 5px 0; font-size: 1.2em; color: #555;">软件技术</p>
+            </div>
+            <div class="profile-modules">
+                <div class="profile-module">
+                    <h3>个人简介</h3>
+                    <p><strong>您好，我是一名热衷于全栈开发的软件技术专业毕业生，精通Java和Python编程语言，并对前端（HTML/CSS/JavaScript）与后端（Spring Boot, Django）开发拥有深厚的理解和实践经验。</strong></p>
+                </div>
+                <div class="profile-module">
+                    <h3>专业技能</h3>
+                    <p><strong>我的技术栈还包括数据库设计与管理（MySQL, MongoDB），使我能够独立构建并优化复杂的数据库系统。</strong></p>
+                </div>
+                <div class="profile-module">
+                    <h3>职业愿景</h3>
+                    <p><strong>我对设备检测领域充满热情，渴望将我的编程技能与物联网（IoT）技术相结合，以实现智能设备的高效监测和管理。我具备出色的学习能力和对新技术的快速适应能力，这使我能够不断更新我的技术知识库，以应对快速变化的技术环境。</strong></p>
+                </div>
+                <div class="profile-module">
+                    <h3>个人优势</h3>
+                    <p><strong>作为一名全栈开发者，我热衷于在项目的每个阶段都发挥作用，从概念设计到产品部署，我都能提供专业的见解和解决方案。我期待加入一个创新的团队，共同推动技术边界，创造真正有价值的软件产品。</strong></p>
+                </div>
+                <div style="margin-top: 20px;">
+                    <img src="images/微信图片_20250525151243.jpg" alt="杜亿豪">
+                </div>
+            </div>
+            <button class="next-btn" onclick="scrollToNextSection('skills')">前往技能概述</button>
         </div>
     </section>
     <section id="skills">
         <h2>技能概述</h2>
         <div class="skill-container">
             <div class="skill-item">
-                <h3>Java</h3>
+                <h3>Java <span class="skill-level">90%</span></h3>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 90%;"></div>
+                </div>
                 <p>熟练掌握Java编程语言，具备扎实的面向对象编程基础，能够开发高性能的后端应用。</p>
             </div>
             <div class="skill-item">
-                <h3>Python</h3>
+                <h3>Python <span class="skill-level">85%</span></h3>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 85%;"></div>
+                </div>
                 <p>精通Python语言，熟悉常用库和框架，能够进行数据分析、爬虫开发以及后端服务构建。</p>
             </div>
             <div class="skill-item">
-                <h3>全栈开发</h3>
+                <h3>全栈开发 <span class="skill-level">80%</span></h3>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 80%;"></div>
+                </div>
                 <p>具备全栈开发能力，熟悉前端（HTML/CSS/JavaScript/Vue.js/React.js）和后端（Spring Boot/Django REST framework）技术栈。</p>
             </div>
             <div class="skill-item">
-                <h3>后端架构</h3>
+                <h3>后端架构 <span class="skill-level">85%</span></h3>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 85%;"></div>
+                </div>
                 <p>熟悉Spring Boot和Django REST framework，能够设计和开发高效的后端架构。</p>
             </div>
             <div class="skill-item">
-                <h3>数据库技术</h3>
+                <h3>数据库技术 <span class="skill-level">80%</span></h3>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 80%;"></div>
+                </div>
                 <p>掌握MySQL和MongoDB数据库技术，包括数据库设计、优化和管理。</p>
             </div>
         </div>
+        <button class="next-btn" onclick="scrollToNextSection('projects')">前往项目经验</button>
     </section>
     <section id="projects">
         <h2>项目经验</h2>
         <div class="carousel">
             <div class="project">
-                <img src="images/图书管理系统.png" alt="图书管理系统" class="active" onclick="largeImage(this)">
+                <img src="images/图书管理系统.png" alt="图书管理系统" onclick="largeImage(this)">
                 <div class="project-name">图书管理系统</div>
                 <p>这是一个基于Java的图书管理系统，实现了图书的增删改查功能。</p>
             </div>
@@ -251,35 +357,33 @@
             <li onclick="showImage(2)">3</li>
             <li onclick="showImage(3)">4</li>
         </ul>
+        <button class="next-btn" onclick="scrollToNextSection('awards')">前往比赛历程</button>
     </section>
     <section id="awards">
         <h2>比赛历程</h2>
         <div class="award-container">
             <div class="award-item">
-                <img src="" alt="全国大学生程序设计竞赛">
                 <div class="award-info">
                     <h3>2024年 全国大学生程序设计竞赛省赛二等奖</h3>
                     <p>在本次竞赛中，我负责算法设计和代码实现，通过团队协作成功解决了多个复杂问题。</p>
                 </div>
             </div>
             <div class="award-item">
-                <img src="" alt="全国大学生电子设计竞赛">
                 <div class="award-info">
                     <h3>2024年 全国大学生电子设计竞赛省赛优秀奖</h3>
                     <p>本次比赛我参与了硬件设计和软件开发，完成了智能小车的控制系统的实现。</p>
                 </div>
             </div>
             <div class="award-item">
-                <img src="" alt="全国大学生学创杯">
                 <div class="award-info">
                     <h3>2025年 全国大学生学创杯省赛三等奖</h3>
                     <p>在这个项目中，我研发出一个智能分析模型，来帮助团队进行各项数据分析。</p>
                 </div>
             </div>
             <div class="award-item">
-                <img src="images/微信图片_20250525194337.jpg" alt=""诚信校园"行活动征文大赛">
+                <img src="images/微信图片_20250525194337.jpg" alt="诚信校园行活动征文大赛">
                 <div class="award-info">
-                    <h3>2024年 诚信校园"行活动征文大赛优秀奖</h3>
+                    <h3>2024年 诚信校园行活动征文大赛优秀奖</h3>
                     <p>本次比赛我通过运用python调试AI来协助进行文章排版以及查重，提高效率。</p>
                 </div>
             </div>
@@ -291,6 +395,7 @@
                 </div>
             </div>
         </div>
+        <button class="next-btn" onclick="scrollToNextSection('contact')">前往联系方式</button>
     </section>
     <section id="contact">
         <h2>联系方式</h2>
@@ -304,29 +409,115 @@
         <p>&copy; 2025 杜亿豪. All rights reserved.</p>
     </footer>
 
+    <!-- 音乐播放器 -->
+    <audio id="background-music" loop>
+        <source src="images/放松的旅行背景乐-轻松舒缓-卡农_爱给网_aigei_com.mp3" type="audio/mpeg">
+        您的浏览器不支持音频元素。
+    </audio>
+
+    <div class="music-control">
+        <button id="music-control-btn" class="music-btn">
+            <i class="fas fa-play"></i>
+        </button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js" defer></script>
     <script>
-        // 添加滚动加载动画
-        window.addEventListener('scroll', function() {
-            const sections = document.querySelectorAll('section');
-            sections.forEach(function(section) {
-                const sectionTop = section.getBoundingClientRect().top;
-                if (sectionTop < window.innerHeight) {
-                    section.style.opacity = '1';
+        document.addEventListener('DOMContentLoaded', function() {
+            // 音乐播放控制
+            const music = document.getElementById('background-music');
+            const musicBtn = document.getElementById('music-control-btn');
+            const icon = musicBtn.querySelector('i');
+
+            musicBtn.addEventListener('click', function() {
+                if (music.paused) {
+                    music.play();
+                    icon.classList.remove('fa-play');
+                    icon.classList.add('fa-pause');
+                } else {
+                    music.pause();
+                    icon.classList.remove('fa-pause');
+                    icon.classList.add('fa-play');
                 }
+            });
+
+            // 自动播放策略：部分浏览器不允许自动播放，需用户交互触发
+            document.body.addEventListener('click', function() {
+                if (music.paused) {
+                    music.play();
+                    icon.classList.remove('fa-play');
+                    icon.classList.add('fa-pause');
+                }
+            }, { once: true });
+
+            // 导航功能
+            document.querySelectorAll('nav a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.querySelector('#' + targetId);
+                    if (targetElement) {
+                        document.querySelectorAll('section').forEach(section => {
+                            section.style.display = 'none';
+                            section.style.opacity = '0';
+                        });
+                        targetElement.style.display = 'block';
+                        targetElement.style.opacity = '1';
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+
+            // 延迟加载粒子效果
+            setTimeout(function() {
+                particlesJS('particles-js', {
+                    particles: {
+                        number: { value: 80 },
+                        color: { value: '#ffffff' },
+                        shape: { type: 'circle' },
+                        opacity: { value: 0.3 },
+                        size: { value: 2 },
+                        line_linked: {
+                            enable: true,
+                            distance: 150,
+                            color: '#ffffff',
+                            opacity: 0.2,
+                            width: 1
+                        },
+                        move: {
+                            enable: true,
+                            speed: 1,
+                            direction: 'none',
+                            random: false,
+                            straight: false,
+                            out_mode: 'out',
+                            bounce: false
+                        }
+                    },
+                    interactivity: {
+                        detect_on: 'canvas',
+                        events: {
+                            onhover: { enable: true, mode: 'grab' },
+                            onclick: { enable: true, mode: 'push' },
+                            resize: true
+                        }
+                    },
+                    retina_detect: true
+                });
+            }, 1000);
+
+            // 初始化技能进度条
+            const progressElements = document.querySelectorAll('.progress');
+            progressElements.forEach(progress => {
+                const width = progress.style.width;
+                progress.style.width = '0%';
+                setTimeout(() => {
+                    progress.style.width = width;
+                }, 300);
             });
         });
 
-      // 添加按钮点击事件
-document.addEventListener('DOMContentLoaded', function() {
-    const button = document.querySelector('#contact button');
-    if (button) {
-        button.addEventListener('click', function() {
-            window.location.href = 'tel:13213689334';
-        });
-    }
-});
-
-        // 添加点击图片放大功能
+        // 点击图片放大功能
         function largeImage(img) {
             const enlargedImg = document.createElement('img');
             enlargedImg.src = img.src;
@@ -344,43 +535,35 @@ document.addEventListener('DOMContentLoaded', function() {
             document.body.appendChild(enlargedImg);
         }
 
-        window.onload = function() {
-            const skillsSection = document.getElementById('skills');
-            if (skillsSection) {
-                skillsSection.style.display = 'block'; // 显示“技能”部分
-            }
-        };
-
-        // 导航功能
-        document.querySelectorAll('nav a').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
-                const targetElement = document.querySelector('#' + targetId);
-                if (targetElement) {
-                    document.querySelectorAll('section').forEach(section => {
-                        section.style.display = 'none'; // 隐藏所有 section
-                        section.style.opacity = '0';
-                    });
-                    targetElement.style.display = 'block'; // 显示目标元素
-                    targetElement.style.opacity = '1';
-                    targetElement.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-
         // 图片轮播功能
         function showImage(index) {
             const projects = document.querySelectorAll('.project');
             const indicators = document.querySelectorAll('.carousel-indicators li');
             
             projects.forEach((project, i) => {
-                project.style.display = i === index ? 'block' : 'none';
+                project.style.opacity = i === index ? '1' : '0';
+                project.style.transition = 'opacity 0.5s ease-in-out';
             });
             
             indicators.forEach((indicator, i) => {
                 indicator.classList.toggle('active', i === index);
             });
+        }
+
+        // 下一步按钮功能
+        function scrollToNextSection(nextSectionId) {
+            const currentSection = document.querySelector('section.active');
+            const nextSection = nextSectionId ? document.getElementById(nextSectionId) : currentSection.nextElementSibling;
+
+            if (nextSection) {
+                document.querySelectorAll('section').forEach(section => {
+                    section.style.display = 'none';
+                    section.style.opacity = '0';
+                });
+                nextSection.style.display = 'block';
+                nextSection.style.opacity = '1';
+                nextSection.scrollIntoView({ behavior: 'smooth' });
+            }
         }
     </script>
 </body>
